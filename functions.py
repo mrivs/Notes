@@ -76,10 +76,15 @@ def open_note(id,notes):
         print('Заметка не найдена')
         return None
 
-
-
 def change_note_title(note:Note):
         new_title = input('Введите новый заголовок заметки: ')
         note.change_title(new_title)
         print('Заголовок заметки обновлен')
-   
+
+def change_note_body(note:Note):
+        text=input_text()
+        note.change_body(text)
+
+def apend_note_body(note:Note):
+        text=append_string(note.get_body())
+        note.change_body(text)

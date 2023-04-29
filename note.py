@@ -11,7 +11,7 @@ class Note:
         self.updated_at = updated_at or datetime.now()
 
     def __repr__(self):
-        return f" ID: {self.id} Заголовок: {self.title} \n создана: {self.created_at.replace(microsecond=0)} изменена: {self.updated_at.replace(microsecond=0)} "
+        return f" ID: {self.id} Cоздана: {self.created_at.date()} Изменена: {self.updated_at.date()} Заголовок: {self.title}"
     
     def update(self):
         self.updated_at = datetime.now()
@@ -38,4 +38,4 @@ class Note:
         return self.id
     
     def show_note(self):
-        return f" ID: {self.id} \n  создана: {self.created_at.replace(microsecond=0)} изменена: {self.updated_at.replace(microsecond=0)}\n == {self.title} ==\n{self.body}\n"
+        return f" === {self.title} ===\n{self.body}\n ===================="

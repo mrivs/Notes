@@ -45,20 +45,15 @@ def start():
 def submenu(note):
     # submenu=("1 - Изменить заголовок; 2 - Дописать заметку; 3 - Ввести новый текст q - возврат")
     while (True):
-
         print(interface.submenu)
         inp = input("введите команду: ")
         if inp == "q":
             break
-
         n = int(inp)
         if n == 1:
             functions.change_note_title(note)
-
         elif n == 2:
-
-            pass
-
+            functions.apend_note_body(note)
         elif n == 3:
-            pass
+            functions.change_note_body(note)
 
