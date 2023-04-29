@@ -1,7 +1,7 @@
 import interface
 import functions
 import saveloder
-from  note import Note
+from note import Note
 
 notes = []
 main_id = 1
@@ -13,7 +13,7 @@ def start():
     while (True):
 
         print(interface.mainmenu)
-        n= input("введите команду: ")
+        n = input("введите команду: ")
         if n == "q":
             break
 
@@ -25,26 +25,31 @@ def start():
             saveloder.save_notes(notes)
 
         elif n == "3":
-            functions.add_note(main_id,notes)
+            functions.add_note(main_id, notes)
             main_id = main_id+1
 
         elif n == "4":
-            id=input("введите ID: ")
-            note=functions.open_note(id,notes)
-            if note: submenu(note)
+            id = input("введите ID: ")
+            note = functions.open_note(id, notes)
+            if note:
+                submenu(note)
 
         elif n == "5":
-            list=functions.date_filter(notes)
-            if (list): interface.show_list(list)
-            else: print("список пуст")
+            list = functions.date_filter(notes)
+            if (list):
+                interface.show_list(list)
+            else:
+                print("список пуст")
 
         elif n == "6":
             interface.show_list(notes)
 
         elif n == "7":
-            id=input("введите ID: ")
-            functions.delete_note(id,notes)
-        else: print("неизвестная команда")
+            id = input("введите ID: ")
+            functions.delete_note(id, notes)
+        else:
+            print("неизвестная команда")
+
 
 def submenu(note):
     # submenu=("1 - Изменить заголовок; 2 - Дописать заметку; 3 - Ввести новый текст 4-просмотр q - возврат")
