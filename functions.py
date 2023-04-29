@@ -1,6 +1,12 @@
 from note import Note
 import datetime
 
+def is_conv_int(s):
+    try:
+        return str(int(s)) == s
+    except:
+        return False
+    
 def append_string(string):
     print('Чтобы сохранить и выйти, нажмите Enter на пустой строке')
     buffer = []
@@ -41,14 +47,6 @@ def get_id(notes):
             max_id = note.id
     return max_id+1
 
-def get_notes_by_date_range(start_date, end_date, notes):
-
-    matching_notes = []
-    for note in notes:
-        if start_date <= note.created_at <= end_date:
-            matching_notes.append(note)
-    return matching_notes
-
 def add_note(main_id,notes):
     print("Введите заголовок")
     title = input()
@@ -68,13 +66,15 @@ def date_filter(notes):
         return filtred_notes
 
 def open_note(id,notes):
-    note = next((n for n in notes if int(n.get_id()) == int(id)), None)
-    if note:
-        print(note.show_note())
-        return note
-    else: 
-        print('Заметка не найдена')
-        return None
+    if is_conv_int(id):
+        note = next((n for n in notes if int(n.get_id()) == int(id)), None)
+        if note:
+            print(note.show_note())
+            return note
+        else: 
+            print('Заметка не найдена')
+            return None
+    else: print("Неверный ID!")
 
 def change_note_title(note:Note):
         new_title = input('Введите новый заголовок заметки: ')
@@ -92,10 +92,12 @@ def apend_note_body(note:Note):
         print('Заметка обновлена')
 
 def delete_note(id,notes):
-    note = next((n for n in notes if int(n.get_id()) == int(id)), None)
-    if note:
-        notes.remove(note)
-        print('Заметка удалена!')
-    else: 
-        print('Заметки нет')
-        return None
+    if is_conv_int(id):
+        note = next((n for n in notes if int(n.get_id()) == int(id)), None)
+        if note:
+            notes.remove(note)
+            print('Заметка удалена!')
+        else: 
+            print('Заметки нет')
+            return None
+    else: print("Неверный ID!")
