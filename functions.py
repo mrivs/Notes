@@ -50,9 +50,9 @@ def get_notes_by_date_range(start_date, end_date, notes):
     return matching_notes
 
 def add_note(main_id,notes):
-    print("введите заголовок")
+    print("Введите заголовок")
     title = input()
-    print("введите заметку")
+    print("Введите заметку")
     body = input_text()
     note = Note(main_id, title, body)
     notes.append(note)
@@ -84,7 +84,18 @@ def change_note_title(note:Note):
 def change_note_body(note:Note):
         text=input_text()
         note.change_body(text)
+        print('Заметка обновлена')
 
 def apend_note_body(note:Note):
         text=append_string(note.get_body())
         note.change_body(text)
+        print('Заметка обновлена')
+
+def delete_note(id,notes):
+    note = next((n for n in notes if int(n.get_id()) == int(id)), None)
+    if note:
+        notes.remove(note)
+        print('Заметка удалена!')
+    else: 
+        print('Заметки нет')
+        return None

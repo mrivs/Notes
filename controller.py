@@ -7,7 +7,7 @@ notes = []
 main_id = 1
 
 def start():
-    # mainmenu=(" 1 - Открыть файл;  2 - Сохранить в файл;  3 - Добавить заметку; 4 - Открыть заметку по ИД; 5 - Фильтр ; 6 - Вывести весь список q - выход\n")
+    # mainmenu=(" 1 - Открыть файл;  2 - Сохранить в файл;  3 - Добавить заметку; 4 - Открыть заметку по ИД; 5 - Фильтр ; 6 - Вывести весь список 7 удалить q - выход\n")
     global notes
     global main_id
     while (True):
@@ -41,9 +41,12 @@ def start():
 
         elif n == 6:
             interface.show_list(notes)
+        elif n == 7:
+            id=input("введите ID: ")
+            functions.delete_note(id,notes)
 
 def submenu(note):
-    # submenu=("1 - Изменить заголовок; 2 - Дописать заметку; 3 - Ввести новый текст q - возврат")
+    # submenu=("1 - Изменить заголовок; 2 - Дописать заметку; 3 - Ввести новый текст 4-просмотр q - возврат")
     while (True):
         print(interface.submenu)
         inp = input("введите команду: ")
@@ -56,4 +59,5 @@ def submenu(note):
             functions.apend_note_body(note)
         elif n == 3:
             functions.change_note_body(note)
-
+        elif n == 4:
+            print(note.show_note())
